@@ -27,3 +27,11 @@ func RetornaUmaReceita(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(receita)
 
 }
+
+func CadastraReceita(w http.ResponseWriter, r *http.Request) {
+	var cadastroReceita models.Receitas
+	json.NewDecoder(r.Body).Decode(&cadastroReceita)
+
+	database.DB.Create(&cadastroReceita)
+	json.NewEncoder(w).Encode(cadastroReceita)
+}

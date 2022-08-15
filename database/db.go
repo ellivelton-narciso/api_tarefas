@@ -44,8 +44,8 @@ func ConectaComBancoDeDados() {
 	User = Config.User
 	Pass = Config.Pass
 
-	stringConexao := User + ":" + Pass + "@tcp(" + Host + ":" + Port + ")/" + DBname
-	DB, err = gorm.Open(mysql.Open(stringConexao))
+	con := User + ":" + Pass + "@tcp(" + Host + ":" + Port + ")/" + DBname
+	DB, err = gorm.Open(mysql.Open(con))
 
 	if err != nil {
 		log.Panic("Erro ao conectar com o banco de dados.")

@@ -27,3 +27,17 @@ func RetornaUmaReceita(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(receita)
 
 }
+
+func Despesas(w http.ResponseWriter, r *http.Request) {
+	var d []models.Despesas
+	database.DB.Find(&d)
+	json.NewEncoder(w).Encode(d)
+}
+
+func RetornaUmaDespesa(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+	var despesa models.Receitas
+	database.DB.First(&despesa, id)
+	json.NewEncoder(w).Encode(despesa)
+}
